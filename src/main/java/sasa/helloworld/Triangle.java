@@ -115,6 +115,15 @@ public class Triangle extends Shape {
         
         return ret;
     }
+
+
+    /**
+     * Please see  http://en.wikipedia.org/wiki/Point_in_polygon
+     * as you going to rotate shapes in the future and you need common solution for rectangle also and any polygon shape
+     * @param x
+     * @param y
+     * @return
+     */
     @Override
     public boolean isThere(int x, int y) {
         boolean ret = false;
