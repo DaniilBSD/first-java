@@ -100,7 +100,7 @@ public class Triangle extends Shape {
         Polygon t = new Polygon(x, y, 3);
         g.fillPolygon(t);
     }
-    
+    @Override
     public void move(int dX, int dY) {
         setX1(getX1() + dX);
         setY1(getY1() + dY);
@@ -108,6 +108,12 @@ public class Triangle extends Shape {
         setY2(getY2() + dY);
         setX3(getX3() + dX);
         setY3(getY3() + dY);
+    }
+    
+    public int gradient( int x1 , int y1 , int x1 , int x2 ){
+        int gradient = 1;
+        if()
+        return gradient;
     }
     public boolean rightSide(int x1 , int y1 , int x2 , int y2 , int x3 ,int y3 , int x4 , int y4){
         boolean ret = false;
