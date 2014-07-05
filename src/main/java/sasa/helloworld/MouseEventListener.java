@@ -33,12 +33,14 @@ public class MouseEventListener implements MouseListener, MouseInputListener {
     public void mousePressed(MouseEvent e) {
         x = e.getX();
         y = e.getY();
+        container.pickShape(x, y);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        container.move(x, y, e.getX(), e.getY());
+        container.releaseShape();
         e.getComponent().repaint();
+        
     }
 
     @Override

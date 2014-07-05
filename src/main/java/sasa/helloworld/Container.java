@@ -12,6 +12,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,13 +23,17 @@ import java.util.logging.Logger;
  */
 public class Container {
 
-    private List<Shape> shapes = new ArrayList<>();
+    private List<Shape> shapes = new LinkedList<>();
+    private Shape movingShape = null;
+    
+    public void releaseShape(){
+        movingShape = null;
+    }
 
     public List<Shape> getShapes() {
         return shapes;
     }
     public void draw(Graphics g){
-        //System.err.println(" --- drawing " + new Date());
         for(Shape s : shapes){
             s.draw(g);
         }
@@ -62,11 +67,18 @@ public class Container {
             }
         }
     }
-    public void move(int xs ,int ys, int xf , int yf){
+    public void pickShape(int xs ,int ys){
         for(Shape s : shapes){
             if(s.isThere(xs, ys)){
-                s.move(xf - xs, yf- ys);
+                movingShape = s;
             }
+        }
+        shapes.remove(movingShape);
+        shapes.add(movingShape);
+    }
+    public void move(int xs ,int ys, int xf , int yf){
+        if( movingShape != null){
+            movingShape.move(xf - xs, yf- ys);
         }
     }
     
