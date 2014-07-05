@@ -110,25 +110,46 @@ public class Triangle extends Shape {
         setY3(getY3() + dY);
     }
     
-    public int gradient( int x1 , int y1 , int x1 , int x2 ){
-        int gradient = 1;
-        if()
-        return gradient;
+    public int degree( int x1 , int y1 , int x2 , int y2 ){
+        int gradient;
+        if( x2 == x1 ){
+            gradient = 0xffffffff;
+        }
+        else{
+            gradient = (y2 - y1) / (x2 -x1);
+        }
+        int degree = (int) (Math.tan(gradient) * -1);
+        return degree;
     }
+    
     public boolean rightSide(int x1 , int y1 , int x2 , int y2 , int x3 ,int y3 , int x4 , int y4){
         boolean ret = false;
-        int ydif = y2 - y1;
-        int xdif = x2 - x1;
-        int gradient;
-        
+        int degree1 = degree(x1, y1, x2, y2);
+        int degree2 = degree(x1, y1, x3, y3);
+        int degree3 = degree(x1, y1, x4, y4);
+        if( degree1 >= 0 && degree2 >= 0 && y2 - y1 <= 0 && y3 - y1 <= 0){
+            if(degree1 > degree3 && degree2 < degree3){
+                ret = true;
+                ;
+            }
+        }
+        else{
+            if(degree1 <= 0 && degree2 <= 0){
+                if(degree1 < degree3 && degree2 > degree3){
+                    ret = true;
+                }
+            }
+        }
         return ret;
     }
     @Override
     public boolean isThere(int x, int y) {
         boolean ret = false;
-        if(rightSide(x1, y1, x2, y2, x3, y3, x, y) && rightSide(x3, y3, x1, y1, x2, y2, x, y) && rightSide(x2, y2, x3, y3, x1, y1, x, y)){
+        /*if(rightSide(x1, y1, x2, y2, x3, y3, x, y) && rightSide(x3, y3, x1, y1, x2, y2, x, y) && rightSide(x2, y2, x3, y3, x1, y1, x, y)){
             ret = true;
-        }
+        }*/
+        //int xmin = Math.min(x1, y)
+       
         return ret;
         
     }
