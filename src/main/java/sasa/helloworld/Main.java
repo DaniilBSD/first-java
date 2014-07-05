@@ -5,9 +5,7 @@
  */
 package sasa.helloworld;
 
-import java.awt.Color;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  *
@@ -28,7 +26,9 @@ public class Main {
         container.readFromFile();
 
         MyPanel jp = new MyPanel();
-        jp.addMouseListener(new MouseEventListener(container));
+        MouseEventListener listener = new MouseEventListener(container);
+        jp.addMouseListener(listener);
+        jp.addMouseMotionListener(listener);
         jp.setSize(1000, 500);
         jp.setCont(container);
         jf.add(jp);

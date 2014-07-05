@@ -5,13 +5,13 @@
  */
 package sasa.helloworld;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +28,7 @@ public class Container {
         return shapes;
     }
     public void draw(Graphics g){
-        System.err.println(" --- drawing " + new Date());
+        //System.err.println(" --- drawing " + new Date());
         for(Shape s : shapes){
             s.draw(g);
         }
@@ -37,7 +37,7 @@ public class Container {
         File file = new File("shapes.txt");
         List<String> strings = Collections.EMPTY_LIST;
         try {
-            strings = Files.readAllLines(file.toPath());
+            strings = Files.readAllLines(file.toPath(), Charset.defaultCharset());
         }
         catch (IOException ex) {
             Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
