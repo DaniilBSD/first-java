@@ -157,6 +157,10 @@ public class Triangle extends Shape {
         }*/
         //int xmin = Math.min(x1, y)
        
+        int[] xa = {x1 , x2 , x3};
+        int[] ya = {y1 , y2 , y3};
+        Polygon t = new Polygon(xa, ya, 3);
+        ret = t.contains(x, y);
         return ret;
         
     }
