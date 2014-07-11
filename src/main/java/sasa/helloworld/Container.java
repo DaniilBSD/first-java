@@ -65,6 +65,11 @@ public class Container {
                 t.readFromString(s);
                 shapes.add(t);
             }
+            if (s.indexOf("Hexagon") == 0) {
+                Hexagon h = new Hexagon();
+                h.readFromString(s);
+                shapes.add(h);
+            }
         }
     }
     public void pickShape(int xs ,int ys){
