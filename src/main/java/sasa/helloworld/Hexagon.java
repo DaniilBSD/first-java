@@ -46,7 +46,7 @@ public class Hexagon extends Shape{
     }
     
     public void readFromString(String shape) {
-        this.setX(Integer.valueOf(getParam(shape, "x")));
+        this.setX(Integer.valueOf(getParam(shape, "x:")));
         this.setY(Integer.valueOf(getParam(shape, "y:")));
         this.setRadius(Integer.valueOf(getParam(shape, "radius:")));
         readColor(shape);
@@ -66,7 +66,7 @@ public class Hexagon extends Shape{
     
     public Polygon createHexagon(){
         int a = radius / 2;
-        int b = (int) (Math.sin(60) * radius);
+        int b = (int) (Math.sin(30) * radius);
         int xm = x - b;
         int ym = y - radius;
         int[] xa = {(0), 0 , b , (b + b) , (b + b) , b};
@@ -76,7 +76,7 @@ public class Hexagon extends Shape{
             xa[ind] += xm;
             ind++;
         }
-        ind++;
+        ind = 0;
         for(int i : ya){
             ya[ind] += ym;
             ind++;
