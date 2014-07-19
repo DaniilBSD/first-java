@@ -18,6 +18,8 @@ public class Circle extends Shape {
     private int x;
 
     private int y;
+    
+    private static final int angles_quantity = 64; 
 
     public Circle( ) {
         
@@ -94,9 +96,18 @@ public class Circle extends Shape {
     public boolean isThere(int x, int y) {
         return getRadius() >= Math.sqrt((getX() - x) * (getX() - x) + (getY() - y) * (getY() - y));
     }
-    
-    
-    
-    
 
+    
+    @Override
+    public int[][] getPoints() {
+        int[][] arr = new int[angles_quantity][2];
+        double  cir = 3.14159265 * 2;
+        double angle = cir / angles_quantity;
+        
+        for(int i = 0; i < angles_quantity; i++){
+            arr[i][0] = (int)(radius * Math.sin(angle * i)) + getX();
+            arr[i][1] = (int)(radius * Math.cos(angle * i)) + getY();
+        }
+        return arr;
+    }
 }

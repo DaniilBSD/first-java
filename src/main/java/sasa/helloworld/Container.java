@@ -90,8 +90,16 @@ public class Container {
     public void move(int xs, int ys, int xf, int yf) {
         if (movingShape != null) {
             movingShape.move(xf - xs, yf - ys);
+            for(Shape s1 : shapes){
+                if( movingShape != s1 && movingShape.intersects(s1)){
+                    s1.move(xf - xs, yf - ys);
+                    for(Shape s2 : shapes){
+                        if( movingShape != s2 && s1 != s2 && s1.intersects(s2)){
+                            s2.move(xf - xs, yf - ys);
+                        }
+                    }
+                }
+            }
         }
     }
-
-
 }

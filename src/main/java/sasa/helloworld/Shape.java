@@ -39,12 +39,38 @@ public abstract class Shape {
     
     public abstract boolean isThere( int x, int y);
     
-    
+    public abstract int[][] getPoints();
 
     protected String getParam(String shape, String param){
         int ind1 = shape.indexOf(param) + param.length();
         int ind2 = shape.indexOf(",", ind1);
         return shape.substring(ind1, ind2);
+    }
+    
+    public Polygon getPolygon(){
+        int[][] arr = getPoints();
+        int angles_quantity = arr.length;
+        int[] xa = new int[angles_quantity];
+        int[] ya = new int[angles_quantity];
+        
+        for(int i = 0; i < angles_quantity; i++){
+            xa[i] = arr[i][0];
+            ya[i] = arr[i][1];
+        }
+
+        Polygon h = new Polygon(xa, ya, angles_quantity);
+        return h;
+    }
+
+    public boolean intersects( Shape s ){
+       int[][] arr = s.getPoints();
+       Polygon p = getPolygon();
+       for(int[] a : arr){
+           if(p.contains(new Point(a[0], a[1]))){
+               return true;
+           }
+       }
+       return false;
     }
 
 }

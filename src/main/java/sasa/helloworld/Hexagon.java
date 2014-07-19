@@ -20,6 +20,8 @@ public class Hexagon extends Shape{
     private int y;
     
     private int radius;
+    
+    private static final int angles_quantity = 6; 
 
     public int getX() {
         return x;
@@ -55,7 +57,7 @@ public class Hexagon extends Shape{
     @Override
     public void draw(Graphics g) {
         g.setColor(getColor());
-        Polygon h = createAnygon(16);
+        Polygon h = getPolygon();
         g.fillPolygon(h);
     }
     @Override
@@ -64,47 +66,31 @@ public class Hexagon extends Shape{
         setY(getY() + dY);
     }
     
-    public Polygon createHexagon(){
-        int a = radius / 2;
-        int b = (int) (Math.sin(1.04719755) * radius);
-        int xm = x - b;
-        int ym = y - radius;
-        int[] xa = {(0), 0 , b , (b + b) , (b + b) , b};
-        int[] ya = {(a * 3) , a , 0 , a , (a * 3) , (a * 4)};
-        int ind = 0;
-        for(int i : xa){
-            xa[ind] += xm;
-            ind++;
-        }
-        ind = 0;
-        for(int i : ya){
-            ya[ind] += ym;
-            ind++;
-        }
-        Polygon h = new Polygon(xa, ya, 6);
-        return h;
-    }
-
-    public Polygon createAnygon(int k){
-        double  cir = 3.14159265 * 2;
-        double angle = cir / k;
-        int xa[] = new int[k];
-        int ya[] = new int[k];
-
-        for(int i = 0; i < k; i++){
-            xa[i] = (int)(radius * Math.sin(angle * i)) + getX();
-            ya[i] = (int)(radius * Math.cos(angle * i)) + getY();
-        }
-
-        Polygon h = new Polygon(xa, ya, k);
-        return h;
-    }
-
+//    public Polygon createHexagon(){
+//        int a = radius / 2;
+//        int b = (int) (Math.sin(1.04719755) * radius);
+//        int xm = x - b;
+//        int ym = y - radius;
+//        int[] xa = {(0), 0 , b , (b + b) , (b + b) , b};
+//        int[] ya = {(a * 3) , a , 0 , a , (a * 3) , (a * 4)};
+//        int ind = 0;
+//        for(int i : xa){
+//            xa[ind] += xm;
+//            ind++;
+//        }
+//        ind = 0;
+//        for(int i : ya){
+//            ya[ind] += ym;
+//            ind++;
+//        }
+//        Polygon h = new Polygon(xa, ya, 6);
+//        return h;
+//    }
 
     @Override
     public boolean isThere(int x, int y) {
         boolean ret = false;
-        Polygon h = createAnygon(16);
+        Polygon h = getPolygon();
         ret = h.contains(x, y);
         return ret;
         
@@ -115,4 +101,17 @@ public class Hexagon extends Shape{
         return "Hexagon";
     }
 
+    @Override
+    public int[][] getPoints() {
+        int[][] arr = new int[angles_quantity][2];
+        double  cir = 3.14159265 * 2;
+        double angle = cir / angles_quantity;
+        
+        for(int i = 0; i < angles_quantity; i++){
+            arr[i][0] = (int)(radius * Math.sin(angle * i)) + getX();
+            arr[i][1] = (int)(radius * Math.cos(angle * i)) + getY();
+        }
+        return arr;
+    }
+    
 }
