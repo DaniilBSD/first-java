@@ -55,7 +55,7 @@ public class Hexagon extends Shape{
     @Override
     public void draw(Graphics g) {
         g.setColor(getColor());
-        Polygon h = createHexagon();
+        Polygon h = createAnygon(16);
         g.fillPolygon(h);
     }
     @Override
@@ -66,7 +66,7 @@ public class Hexagon extends Shape{
     
     public Polygon createHexagon(){
         int a = radius / 2;
-        int b = (int) (Math.sin(30) * radius);
+        int b = (int) (Math.sin(1.04719755) * radius);
         int xm = x - b;
         int ym = y - radius;
         int[] xa = {(0), 0 , b , (b + b) , (b + b) , b};
@@ -84,10 +84,27 @@ public class Hexagon extends Shape{
         Polygon h = new Polygon(xa, ya, 6);
         return h;
     }
+
+    public Polygon createAnygon(int k){
+        double  cir = 3.14159265 * 2;
+        double angle = cir / k;
+        int xa[] = new int[k];
+        int ya[] = new int[k];
+
+        for(int i = 0; i < k; i++){
+            xa[i] = (int)(radius * Math.sin(angle * i)) + getX();
+            ya[i] = (int)(radius * Math.cos(angle * i)) + getY();
+        }
+
+        Polygon h = new Polygon(xa, ya, k);
+        return h;
+    }
+
+
     @Override
     public boolean isThere(int x, int y) {
         boolean ret = false;
-        Polygon h = createHexagon();
+        Polygon h = createAnygon(16);
         ret = h.contains(x, y);
         return ret;
         

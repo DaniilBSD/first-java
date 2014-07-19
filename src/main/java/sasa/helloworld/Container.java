@@ -18,33 +18,33 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author sasa
  */
 public class Container {
 
     private List<Shape> shapes = new LinkedList<>();
     private Shape movingShape = null;
-    
-    public void releaseShape(){
+
+    public void releaseShape() {
         movingShape = null;
     }
 
     public List<Shape> getShapes() {
         return shapes;
     }
-    public void draw(Graphics g){
-        for(Shape s : shapes){
+
+    public void draw(Graphics g) {
+        for (Shape s : shapes) {
             s.draw(g);
         }
     }
+
     public void readFromFile() {
         File file = new File("shapes.txt");
         List<String> strings = Collections.EMPTY_LIST;
         try {
             strings = Files.readAllLines(file.toPath(), Charset.defaultCharset());
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -72,20 +72,26 @@ public class Container {
             }
         }
     }
-    public void pickShape(int xs ,int ys){
-        for(Shape s : shapes){
-            if(s.isThere(xs, ys)){
-                movingShape = s;
+
+    public void pickShape(int xs, int ys) {
+        Shape sh = null;
+        for (Shape s : shapes) {
+            if (s.isThere(xs, ys)) {
+                sh = s;
             }
         }
-        shapes.remove(movingShape);
-        shapes.add(movingShape);
+        if (sh != null) {
+            shapes.remove(sh);
+            shapes.add(sh);
+        }
+        movingShape = sh;
     }
-    public void move(int xs ,int ys, int xf , int yf){
-        if( movingShape != null){
-            movingShape.move(xf - xs, yf- ys);
+
+    public void move(int xs, int ys, int xf, int yf) {
+        if (movingShape != null) {
+            movingShape.move(xf - xs, yf - ys);
         }
     }
-    
+
 
 }
