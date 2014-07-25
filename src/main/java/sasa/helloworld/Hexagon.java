@@ -66,27 +66,6 @@ public class Hexagon extends Shape{
         setY(getY() + dY);
     }
     
-//    public Polygon createHexagon(){
-//        int a = radius / 2;
-//        int b = (int) (Math.sin(1.04719755) * radius);
-//        int xm = x - b;
-//        int ym = y - radius;
-//        int[] xa = {(0), 0 , b , (b + b) , (b + b) , b};
-//        int[] ya = {(a * 3) , a , 0 , a , (a * 3) , (a * 4)};
-//        int ind = 0;
-//        for(int i : xa){
-//            xa[ind] += xm;
-//            ind++;
-//        }
-//        ind = 0;
-//        for(int i : ya){
-//            ya[ind] += ym;
-//            ind++;
-//        }
-//        Polygon h = new Polygon(xa, ya, 6);
-//        return h;
-//    }
-
     @Override
     public boolean isThere(int x, int y) {
         boolean ret = false;

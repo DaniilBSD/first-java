@@ -7,6 +7,7 @@
 package sasa.helloworld;
 
 import java.awt.*;
+import java.util.LinkedList;
 
 /**
  *
@@ -61,7 +62,19 @@ public abstract class Shape {
         Polygon h = new Polygon(xa, ya, angles_quantity);
         return h;
     }
-
+    public boolean notInsideTheArea(){
+        java.util.List<Shape> shapes = new LinkedList<>();
+        for(Shape s : shapes){
+            Polygon pol = getPolygon();//надо передавать поле
+            int[][] arr = this.getPoints();
+            for(int[] a : arr){
+                if(pol.contains(new Point(a[0], a[1]))){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     public boolean intersects( Shape s ){
        int[][] sarr = s.getPoints();
        Polygon pol = getPolygon();

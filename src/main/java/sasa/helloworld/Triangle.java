@@ -107,21 +107,9 @@ public class Triangle extends Shape {
         setX3(getX3() + dX);
         setY3(getY3() + dY);
     }
-    /**
-     * Please see  http://en.wikipedia.org/wiki/Point_in_polygon
-     * as you going to rotate shapes in the future and you need common solution for rectangle also and any polygon shape
-     * @param x
-     * @param y
-     * @return
-     */
     @Override
     public boolean isThere(int x, int y) {
         boolean ret = false;
-        /*if(rightSide(x1, y1, x2, y2, x3, y3, x, y) && rightSide(x3, y3, x1, y1, x2, y2, x, y) && rightSide(x2, y2, x3, y3, x1, y1, x, y)){
-            ret = true;
-        }*/
-        //int xmin = Math.min(x1, y)
-       
         int[] xa = {x1 , x2 , x3};
         int[] ya = {y1 , y2 , y3};
         Polygon t = new Polygon(xa, ya, 3);

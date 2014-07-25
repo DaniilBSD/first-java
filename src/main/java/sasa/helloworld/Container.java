@@ -86,7 +86,48 @@ public class Container {
         }
         movingShape = sh;
     }
-
+    public void moveFromBorder(int xs, int ys, int xf, int yf){
+        for(Shape s1 : shapes){
+            if( s1.notInsideTheArea() ){
+                s1.move(xs - xf, ys - yf);
+                for(Shape s2 : shapes){
+                    if( s1 != s2 && s1.intersects(s2)){
+                        s2.move(xs - xf, ys - yf);
+                        for(Shape s3 : shapes){
+                            if( s1 != s3 && s2 != s3 && s2.intersects(s3)){
+                                s3.move(xs - xf, ys - yf);
+                                for(Shape s4 : shapes){
+                                    if( s1 != s4 && s2 != s4 && s3 != s4 && s3.intersects(s4)){
+                                        s4.move(xs - xf, ys - yf);
+                                        for(Shape s5 : shapes){
+                                            if( s1 != s5 && s4 != s5 && s2 != s5 && s3 != s5 && s4.intersects(s5)){
+                                                s5.move(xs - xf, ys - yf);
+                                                for(Shape s6 : shapes){
+                                                    if( s1 != s6 && s4 != s6 && s2 != s6 && s5 != s6 && s3 != s6 && s5.intersects(s6)){
+                                                        s6.move(xs - xf, ys - yf);
+                                                        for(Shape s7 : shapes){
+                                                            if( s1 != s7 && s4 != s7 && s2 != s7 && s5 != s7 && s3 != s7 && s6 != s7 && s6.intersects(s7)){
+                                                                s7.move(xs - xf, ys - yf);
+                                                                for(Shape s8 : shapes){
+                                                                    if( s1 != s8 && s7 != s8 && s4 != s8 && s2 != s8 && s5 != s8 && s3 != s8 && s6 != s8 && s7.intersects(s8)){
+                                                                        s8.move(xs - xf, ys - yf);
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     public void move(int xs, int ys, int xf, int yf) {
         if (movingShape != null) {
             movingShape.move(xf - xs, yf - ys);
