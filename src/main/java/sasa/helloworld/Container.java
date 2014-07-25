@@ -96,6 +96,31 @@ public class Container {
                     for(Shape s2 : shapes){
                         if( movingShape != s2 && s1 != s2 && s1.intersects(s2)){
                             s2.move(xf - xs, yf - ys);
+                            for(Shape s3 : shapes){
+                                if( movingShape != s3 && s1 != s3 && s2 != s3 && s2.intersects(s3)){
+                                    s3.move(xf - xs, yf - ys);
+                                    for(Shape s4 : shapes){
+                                        if( movingShape != s4 && s1 != s4 && s2 != s4 && s3 != s4 && s3.intersects(s4)){
+                                            s4.move(xf - xs, yf - ys);
+                                            for(Shape s5 : shapes){
+                                                if( movingShape != s5 && s1 != s5 && s4 != s5 && s2 != s5 && s3 != s5 && s4.intersects(s5)){
+                                                    s5.move(xf - xs, yf - ys);
+                                                    for(Shape s6 : shapes){
+                                                        if( movingShape != s6 && s1 != s6 && s4 != s6 && s2 != s6 && s5 != s6 && s3 != s6 && s5.intersects(s6)){
+                                                            s6.move(xf - xs, yf - ys);
+                                                            for(Shape s7 : shapes){
+                                                                if( movingShape != s7 && s1 != s7 && s4 != s7 && s2 != s7 && s5 != s7 && s3 != s7  && s6 != s7 && s6.intersects(s7)){
+                                                                    s7.move(xf - xs, yf - ys);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

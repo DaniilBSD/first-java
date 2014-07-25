@@ -63,10 +63,17 @@ public abstract class Shape {
     }
 
     public boolean intersects( Shape s ){
-       int[][] arr = s.getPoints();
-       Polygon p = getPolygon();
+       int[][] sarr = s.getPoints();
+       Polygon pol = getPolygon();
+       int[][] arr = this.getPoints();
+       Polygon spol = s.getPolygon();
+       for(int[] a : sarr){
+           if(pol.contains(new Point(a[0], a[1]))){
+               return true;
+           }
+       }
        for(int[] a : arr){
-           if(p.contains(new Point(a[0], a[1]))){
+           if(spol.contains(new Point(a[0], a[1]))){
                return true;
            }
        }
