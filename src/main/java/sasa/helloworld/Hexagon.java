@@ -3,40 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package sasa.helloworld;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Polygon;
 
 /**
  *
- * @author sasa
+ * @author elenabesedina
  */
-public class Circle extends Shape {
-
-    private int radius;
+public class Hexagon extends Shape{
 
     private int x;
 
     private int y;
     
-    private static final int angles_quantity = 64; 
-
-    public Circle( ) {
-        
-    }
-    public Circle( int radius , int x , int y){
-        this.radius = radius;
-        this.x = x ;
-        this.y = y;
-    }
+    private int radius;
     
-    public int getRadius() {
-        return radius;
-    }
-
-    public void setRadius(int radius) {
-        this.radius = radius;
-    }
+    private static final int angles_quantity = 6; 
 
     public int getX() {
         return x;
@@ -54,50 +39,68 @@ public class Circle extends Shape {
         this.y = y;
     }
 
-    @Override
-    public String getShape() {
-        return "Circle";
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
     
-    @Override
     public void readFromString(String shape) {
-        this.setRadius(Integer.valueOf(getParam(shape, "radius:")));
         this.setX(Integer.valueOf(getParam(shape, "x:")));
         this.setY(Integer.valueOf(getParam(shape, "y:")));
+        this.setRadius(Integer.valueOf(getParam(shape, "radius:")));
         readColor(shape);
     }
     
-    
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Circle){
-            Circle c = (Circle) obj;
-            return c.getColor().equals(this.getColor()) && c.getRadius() == this.getRadius();
-        }
-        else{
-            return false;
-        }
-    }
-
     @Override
     public void draw(Graphics g) {
         g.setColor(getColor());
-        g.fillOval(x - radius  , y - radius , radius*2, radius*2);
+        Polygon h = getPolygon();
+        g.fillPolygon(h);
     }
-
     @Override
     public void move(int dX, int dY) {
         setX(getX() + dX);
         setY(getY() + dY);
     }
+    
+//    public Polygon createHexagon(){
+//        int a = radius / 2;
+//        int b = (int) (Math.sin(1.04719755) * radius);
+//        int xm = x - b;
+//        int ym = y - radius;
+//        int[] xa = {(0), 0 , b , (b + b) , (b + b) , b};
+//        int[] ya = {(a * 3) , a , 0 , a , (a * 3) , (a * 4)};
+//        int ind = 0;
+//        for(int i : xa){
+//            xa[ind] += xm;
+//            ind++;
+//        }
+//        ind = 0;
+//        for(int i : ya){
+//            ya[ind] += ym;
+//            ind++;
+//        }
+//        Polygon h = new Polygon(xa, ya, 6);
+//        return h;
+//    }
 
     @Override
     public boolean isThere(int x, int y) {
-        return getRadius() >= Math.sqrt((getX() - x) * (getX() - x) + (getY() - y) * (getY() - y));
+        boolean ret = false;
+        Polygon h = getPolygon();
+        ret = h.contains(x, y);
+        return ret;
+        
     }
 
-    
+    @Override
+    public String getShape() {
+        return "Hexagon";
+    }
+
     @Override
     public int[][] getPoints() {
         int[][] arr = new int[angles_quantity][2];
@@ -110,4 +113,5 @@ public class Circle extends Shape {
         }
         return arr;
     }
+    
 }

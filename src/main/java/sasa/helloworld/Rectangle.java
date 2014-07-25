@@ -84,4 +84,22 @@ public class Rectangle extends Shape {
         return x >= getX() && x <= (getX() + getWidth()) && y >= getY() && y <= (getY() + getHeight());
         
     }
+
+    @Override
+    public int[][] getPoints() {
+        int[][] arr = new int[4][2];
+        arr[0][0] = x;
+        arr[0][1] = y;
+        
+        arr[1][0] = x;
+        arr[1][1] = y + height;
+        
+        arr[2][0] = x + width;
+        arr[2][1] = y + height;
+        
+        arr[3][0] = x + width;
+        arr[3][1] = y;
+        
+        return arr;
+    }
 }
