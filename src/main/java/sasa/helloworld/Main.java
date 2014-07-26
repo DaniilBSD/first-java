@@ -22,9 +22,9 @@ public class Main {
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setSize(1000, 500);
 
-        Container container = new Container();
-        container.readFromFile();
 
+        Container container = new Container(1000,500);
+        container.readFromFile();
         MyPanel jp = new MyPanel();
         MouseEventListener listener = new MouseEventListener(container);
         jp.addMouseListener(listener);
@@ -33,7 +33,7 @@ public class Main {
         jp.setCont(container);
         jf.add(jp);
          
-        
+    
         
         jf.setVisible(true);
         

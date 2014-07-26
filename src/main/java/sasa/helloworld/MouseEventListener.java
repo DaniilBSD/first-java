@@ -56,6 +56,7 @@ public class MouseEventListener implements MouseListener, MouseInputListener {
     @Override
     public void mouseDragged(MouseEvent e) {
         container.move(x, y, e.getX(), e.getY());
+        container.moveFromBorder(x, y, e.getX(), e.getY());
         x = e.getX();
         y = e.getY();
         e.getComponent().repaint();

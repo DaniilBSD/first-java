@@ -63,14 +63,13 @@ public abstract class Shape {
         return h;
     }
     public boolean notInsideTheArea(){
-        java.util.List<Shape> shapes = new LinkedList<>();
-        for(Shape s : shapes){
-            Polygon pol = getPolygon();//надо передавать поле
-            int[][] arr = this.getPoints();
-            for(int[] a : arr){
-                if(pol.contains(new Point(a[0], a[1]))){
-                    return true;
-                }
+        int[] xpoints = {0,0,1000,1000};
+        int[] ypoints = {0,500,500,0};
+        Polygon pol = new Polygon(xpoints, ypoints, 4);
+        int[][] arr = this.getPoints();
+        for(int[] a : arr){
+            if(!pol.contains(new Point(a[0], a[1]))){
+                return true;
             }
         }
         return false;
