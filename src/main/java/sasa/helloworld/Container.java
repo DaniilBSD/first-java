@@ -24,12 +24,12 @@ public class Container {
 
     private List<Shape> shapes = new LinkedList<>();
     private Shape movingShape = null;
-    private int winsizeX;
-    private int winsizeY;
+    private int frameWidth;
+    private int frameHaight;
 
     public Container(int x, int y){
-        winsizeX = x;
-        winsizeY = y;
+        frameWidth = x;
+        frameHaight = y;
     }
     
     public void releaseShape() {
@@ -95,7 +95,7 @@ public class Container {
     }
     public void moveFromBorder(int xs, int ys, int xf, int yf){
         for(Shape s1 : shapes){
-            if( s1.notInsideTheArea() ){
+            if( s1.notInsideTheArea(frameWidth , frameHeight) ){
                 List<Shape> shapesCopy = new ArrayList<>(this.shapes);
                 move( s1 , shapesCopy , xs - xf , ys - yf );
             }

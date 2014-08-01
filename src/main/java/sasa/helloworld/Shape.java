@@ -62,9 +62,9 @@ public abstract class Shape {
         Polygon h = new Polygon(xa, ya, angles_quantity);
         return h;
     }
-    public boolean notInsideTheArea(){
-        int[] xpoints = {0,0,1000,1000};
-        int[] ypoints = {0,500,500,0};
+    public boolean notInsideTheArea(int width, int hight){
+        int[] xpoints = {0,0,width,width};
+        int[] ypoints = {0,hight,hight,0};
         Polygon pol = new Polygon(xpoints, ypoints, 4);
         int[][] arr = this.getPoints();
         for(int[] a : arr){
